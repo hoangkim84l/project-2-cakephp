@@ -1,2 +1,2 @@
-# project-2-cakephp
+# project-2-laravel
 Demo laravel
