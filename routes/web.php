@@ -24,5 +24,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	Route::get('/', function () { return view('admin/dashboard'); });
 	//product
 	Route::resource('products','admin\ProductController');
+	//news
+	Route::resource('news','admin\NewsController');
+	Route::patch('/news/{id}', 'admin\NewsController@update');
 });
 
