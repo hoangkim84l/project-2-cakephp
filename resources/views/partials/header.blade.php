@@ -112,7 +112,7 @@
                 </li>
 
                 <li>
-                  <a href="#">Tin Tức</a>
+                  <a href="#">{{ trans('rules.news') }}</a>
                 </li>                
 
                 <li class="nav__dropdown">

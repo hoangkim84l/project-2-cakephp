@@ -6,7 +6,8 @@
       <ul class="top-menu">
         <li><a href="#">About</a></li>
         <li><a href="#">Advertise</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
+        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
       </ul>
     </div>
     
