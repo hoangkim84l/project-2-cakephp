@@ -1,6 +1,7 @@
 @extends('adminlte::master')
-
+<link href="http://mochoatram.vn/public/site/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 @section('adminlte_css')
+    
 
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">

@@ -11,8 +11,8 @@
       <div class="row">
         <div class="col-md-12"></div>
         <div class="form-group col-md-10">
-          <label for="Name">Name:</label>
-          <input type="text" class="form-control" name="name">
+          <label for="Name">Title:</label>
+          <input type="text" class="form-control" name="name" required="true">
         </div>
       </div>
       <div class="row">
@@ -48,7 +48,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <!-- <link rel="stylesheet" href="/css/admin_custom.css"> -->
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 @stop

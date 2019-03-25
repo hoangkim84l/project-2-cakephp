@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
+    <link href="http://mochoatram.vn/public/site/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
     @if(config('adminlte.plugins.select2'))
         
@@ -38,7 +39,6 @@
     @endif
 
     @yield('adminlte_css')
-    accvvvv
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

@@ -9,7 +9,7 @@
         <a href="{{ URL::to('admin/news/create') }}" class="btn btn-success">add news</a>
     </div>
     <!-- /.box-header -->
-    <div class="">
+    <div class="cus-data-table">
     <br />
     @if (\Session::has('success'))
       <div class="alert alert-success">
@@ -24,7 +24,7 @@
         <th>Date</th>
         <th>Content</th>
         <th>Views</th>
-        <th colspan="2">Action</th>
+        <th style="text-align: center;">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -40,18 +40,25 @@
         <td>{{ substr($passport['content'],0,50)}}</td>
         <td>{{$passport['views']}}</td>
         
-        <td><a href="{{ URL::to('admin/news/' . $passport->id . '/edit') }}" class="btn btn-warning">Edit</a></td>
         <td>
-          <form action="{{ URL::to('admin/news/' . $passport->id) }}" method="post">
-            @csrf
-            <input name="_method" type="hidden" value="DELETE">
-            <button class="btn btn-danger" type="submit">Delete</button>
-          </form>
+          <div class="row">
+            <div class="col-sm-6">
+              <a href="{{ URL::to('admin/news/' . $passport->id . '/edit') }}" class="btn btn-warning" style="float: right;">Edit</a>
+            </div>
+            <div class="col-sm-6">
+              <form action="{{ URL::to('admin/news/' . $passport->id) }}" method="post">
+                @csrf
+                <input name="_method" type="hidden" value="DELETE">
+                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
+              </form>
+            </div>
+          </div>
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
+  {{ $news->links() }}
   </div>
     <!-- /.box-body -->
 </div>

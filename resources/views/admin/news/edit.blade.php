@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-md-12"></div>
         <div class="form-group col-md-12">
-          <img src="<?php echo asset("storage/public/news/$news->filename")?>">
+          <img src="<?php echo asset("storage/news/$news->filename")?>" style="max-width: 400px; max-height: 400px; padding-bottom: 20px;">
           <input type="file" name="filename">    
        </div>
       </div>
@@ -53,7 +53,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <!-- <link rel="stylesheet" href="/css/admin_custom.css"> -->
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 @stop
