@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin </b>BDS',
+    'logo' => '<b>Admin </b>Đại Lộc',
 
-    'logo_mini' => '<b>B</b>DS',
+    'logo_mini' => '<b>Đ</b>L',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,8 +119,17 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
-        
+        [
+            'text' => 'Thành viên',
+            'url'  => 'admin/member',
+            'icon' => 'users',
+        ],
         'Tính năng',
+        [
+            'text'  => 'Liên hệ giữ chổ',
+            'url'  => '#',
+            'icon' => 'check',
+        ],
         [
             'text'  => 'Banner',
             'url'  => '#',
@@ -161,7 +170,7 @@ return [
             'url'  => '#',
             'icon' => 'question',
         ],
-        
+
         'Thông tin trang web',
         [
             'text'  => 'Địa chỉ chi nhánh',
@@ -172,6 +181,11 @@ return [
             'text'  => 'Cấu hình',
             'url'  => '#',
             'icon' => 'gears',
+        ],
+        [
+            'text'  => 'Xem trang',
+            'url'  => '/',
+            'icon' => 'home',
         ],
     ],
 
