@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreateAdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('ads', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
             $table->string('title_vn', 250);
             $table->string('title_en', 250);
             $table->string('title_cn', 250);
+            $table->string('price');
+            $table->string('dis_count');
             $table->text('slug')->nullable();
             $table->text('meta_key')->nullable();
             $table->text('meta_desc')->nullable();
@@ -26,13 +28,8 @@ class CreateNewsTable extends Migration
             $table->text('content_en')->nullable();
             $table->text('content_cn')->nullable();
             $table->integer('views');
-            $table->text('bedrooms')->nullable();
-            $table->text('bathrooms')->nullable();
-            $table->text('garages')->nullable();
-            $table->text('owns')->nullable();
-            $table->text('features')->nullable();
-            $table->text('viewtype')->nullable();
-            $table->text('amenities')->nullable();
+            $table->string('area', 200)->nullable();
+            $table->string('address', 200)->nullable();
             $table->string('typeId');
             $table->timestamps();
         });
@@ -45,6 +42,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('ads');
     }
 }
