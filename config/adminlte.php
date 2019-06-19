@@ -121,28 +121,28 @@ return [
         ],
         [
             'text' => 'Thành viên',
-            'url'  => 'admin/member',
+            'url'  => 'admin/user',
             'icon' => 'users',
         ],
         'Tính năng',
         [
             'text'  => 'Liên hệ giữ chổ',
-            'url'  => '#',
+            'url'  => 'admin/transaction',
             'icon' => 'check',
         ],
         [
             'text'  => 'Banner',
-            'url'  => '#',
+            'url'  => 'admin/banner',
             'icon' => 'image',
         ],
         [
             'text'  => 'Slider',
-            'url'  => '#',
+            'url'  => 'admin/slide',
             'icon' => 'sliders',
         ],
         [
             'text'  => 'Giới thiệu',
-            'url'  => '#',
+            'url'  => 'admin/info',
             'icon' => 'commenting',
         ],
         [
@@ -152,34 +152,34 @@ return [
         ],
         [
             'text'  => 'Rao vặt',
-            'url'  => '#',
+            'url'  => 'admin/ads',
             'icon' => 'legal',
         ],
         [
             'text'  => 'Tuyển dụng',
-            'url'  => '#',
+            'url'  => 'admin/recruitment',
             'icon' => 'comments',
         ],
         [
             'text'  => 'Nhà môi giới',
-            'url'  => '#',
+            'url'  => 'admin/connector',
             'icon' => 'money',
         ],
         [
             'text'  => 'Hỏi đáp',
-            'url'  => '#',
+            'url'  => 'admin/question',
             'icon' => 'question',
         ],
 
         'Thông tin trang web',
         [
             'text'  => 'Địa chỉ chi nhánh',
-            'url'  => '#',
+            'url'  => 'admin/storeAddress',
             'icon' => 'group',
         ],
         [
             'text'  => 'Cấu hình',
-            'url'  => '#',
+            'url'  => 'admin/support',
             'icon' => 'gears',
         ],
         [
