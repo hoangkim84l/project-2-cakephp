@@ -13,7 +13,7 @@ class CreateNewsListImageTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_list_image', function (Blueprint $table) {
+        Schema::create('news_list_images', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('image_link', 250);
             $table->string('newId', 50);

@@ -13,7 +13,7 @@ class CreateConnectorTable extends Migration
      */
     public function up()
     {
-        Schema::create('connector', function (Blueprint $table) {
+        Schema::create('connectors', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 250);
             $table->string('image_link', 250);

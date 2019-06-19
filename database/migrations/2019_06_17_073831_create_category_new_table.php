@@ -13,7 +13,7 @@ class CreateCategoryNewTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_new', function (Blueprint $table) {
+        Schema::create('category_news', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title_vn', 250);
             $table->string('title_en', 250);

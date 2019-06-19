@@ -13,7 +13,7 @@ class CreateSupportTable extends Migration
      */
     public function up()
     {
-        Schema::create('support', function (Blueprint $table) {
+        Schema::create('supports', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 200)->nullable();
             $table->string('gmail', 200)->nullable();
@@ -26,6 +26,7 @@ class CreateSupportTable extends Migration
             $table->string('zalo', 200)->nullable();
             $table->string('facebook', 200)->nullable();
             $table->string('logo', 200)->nullable();
+            $table->text('address')->nullable();
             $table->text('chat_zalo')->nullable();
             $table->text('chat_facebook')->nullable();
             $table->timestamps();

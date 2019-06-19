@@ -13,7 +13,7 @@ class CreateAdsCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('ads_category', function (Blueprint $table) {
+        Schema::create('ads_categorys', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title_vn', 250);
             $table->string('title_en', 250);

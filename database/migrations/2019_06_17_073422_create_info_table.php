@@ -13,7 +13,7 @@ class CreateInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('info', function (Blueprint $table) {
+        Schema::create('infoes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title_vn', 250);
             $table->string('title_en', 250);

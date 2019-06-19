@@ -13,7 +13,7 @@ class CreateRecruitmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('recruitment', function (Blueprint $table) {
+        Schema::create('recruitments', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('title_vn');
             $table->text('title_en')->nullable();

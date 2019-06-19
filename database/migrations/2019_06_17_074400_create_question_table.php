@@ -13,7 +13,7 @@ class CreateQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::create('question', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('title');
             $table->string('name', 250);

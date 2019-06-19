@@ -29,6 +29,8 @@ class CreateAdsTable extends Migration
             $table->text('content_cn')->nullable();
             $table->integer('views');
             $table->string('area', 200)->nullable();
+            $table->string('status', 20)->nullable();
+            $table->string('enddate', 30)->nullable();
             $table->string('address', 200)->nullable();
             $table->string('typeId');
             $table->timestamps();

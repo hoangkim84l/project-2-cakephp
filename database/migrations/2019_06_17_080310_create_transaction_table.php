@@ -13,7 +13,7 @@ class CreateTransactionTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('idnews', 200)->nullable();
             $table->string('status', 50)->nullable();

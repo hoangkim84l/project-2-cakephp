@@ -30,7 +30,8 @@ class CreateNewsTable extends Migration
             $table->text('bathrooms')->nullable();
             $table->text('garages')->nullable();
             $table->text('owns')->nullable();
-            $table->text('features')->nullable();
+            $table->string('status', 10)->nullable();
+            $table->string('enddate', 30)->nullable();
             $table->text('viewtype')->nullable();
             $table->text('amenities')->nullable();
             $table->string('typeId');

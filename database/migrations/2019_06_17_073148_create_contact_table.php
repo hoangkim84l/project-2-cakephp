@@ -13,7 +13,7 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 250);
             $table->text('address')->nullable();

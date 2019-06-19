@@ -13,7 +13,7 @@ class CreateReplyTable extends Migration
      */
     public function up()
     {
-        Schema::create('reply', function (Blueprint $table) {
+        Schema::create('replyes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 200);
             $table->string('email', 200);
