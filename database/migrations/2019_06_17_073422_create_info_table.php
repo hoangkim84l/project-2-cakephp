@@ -18,6 +18,7 @@ class CreateInfoTable extends Migration
             $table->string('title_vn', 250);
             $table->string('title_en', 250);
             $table->string('title_cn', 250);
+            $table->text('image_list');
             $table->text('content_vn');
             $table->text('content_en');
             $table->text('content_cn');

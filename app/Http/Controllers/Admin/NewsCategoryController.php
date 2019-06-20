@@ -21,7 +21,7 @@ class NewsCategoryController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
+        $news = \App\News::paginate(10);
         //return view('admin/news/', compact('news'));
         return View::make('admin.news.index')
             ->with('news', $news);
@@ -56,7 +56,7 @@ class NewsCategoryController extends Controller
         $news           = new \App\News;
         $news->name     = $request->get('name');
         $news->content  = $request->get('content');
-        $news->views   = '1';
+        $news->views    = '0';
         $date           = date_create($request->get('date'));
         $format         = date_format($date, "Y-m-d");
         $news->date     = strtotime($format);
