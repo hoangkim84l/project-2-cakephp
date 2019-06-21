@@ -21,10 +21,10 @@ class SlideController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
-        return View::make('admin.news.index')
-            ->with('news', $news);
+        $slide = \App\Slide::paginate(10);
+        //return view('admin/slide/', compact('slide'));
+        return View::make('admin.slide.index')
+            ->with('slide', $slide);
     }
 
     /**
@@ -35,7 +35,7 @@ class SlideController extends Controller
     public function create()
     {
         //
-        return View::make('admin/news/create');
+        return View::make('admin/slide/create');
     }
 
     /**
@@ -50,22 +50,18 @@ class SlideController extends Controller
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/slide/', $name);
         }
-        //save news
-        $news           = new \App\News;
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->views   = '1';
-        $date           = date_create($request->get('date'));
-        $format         = date_format($date, "Y-m-d");
-        $news->date     = strtotime($format);
-        $news->filename = $name;
-        $news->save();
+        //save slide
+        $slide              = new \App\Slide;
+        $slide->name        = $request->get('name');
+        $slide->link        = $request->get('link');
+        $slide->image_link  = $name;
+        $slide->save();
 
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
-        Session::flash('success', 'Successfully created news!');
-        return Redirect::to('admin/news');
+        //return redirect()->route('admin.slide.index')->with('success', 'Information has been added');
+        Session::flash('success', 'Successfully created slide!');
+        return Redirect::to('admin/slide');
     }
 
     /**
@@ -76,12 +72,12 @@ class SlideController extends Controller
      */
     public function show($id)
     {
-        // get the news
-        $news = \App\News::find($id);
+        // get the slide
+        $slide = \App\Slide::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('admin.news.show')
-            ->with('news', $news);
+        return View::make('admin.slide.show')
+            ->with('slide', $slide);
     }
 
     /**
@@ -92,11 +88,11 @@ class SlideController extends Controller
      */
     public function edit($id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get slide by id
+        $slide = \App\slide::find($id);
         // show the edit form
-        return View::make('admin.news.edit')
-            ->with('news', $news);
+        return View::make('admin.slide.edit')
+            ->with('slide', $slide);
     }
 
     /**
@@ -108,24 +104,24 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get slide by id
+        $slide = \App\Slide::find($id);
         //get link image
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/slide/', $name);
         } else {
-            $name = $news->filename;
+            $name = $slide->image_link;
         }
 
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->filename = $name;
-        $news->save();
+        $slide->name        = $request->get('name');
+        $slide->link        = $request->get('link');
+        $slide->image_link  = $name;
+        $slide->save();
 
-        Session::flash('success', 'Successfully update the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully update the slide!');
+        return Redirect::to('admin/slide');
     }
 
     /**
@@ -136,15 +132,15 @@ class SlideController extends Controller
      */
     public function destroy($id)
     {
-        //delete news by id
-        $news = \App\News::find($id);
-        $news->delete();
-        //delete image in news
-        $image_link = storage_path() . '/app/public/news/' . $news->filename;
+        //delete slide by id
+        $slide = \App\Slide::find($id);
+        $slide->delete();
+        //delete image in slide
+        $image_link = storage_path() . '/app/public/slide/' . $slide->filename;
         if (file_exists($image_link)) {
             unlink($image_link);
         }
-        Session::flash('success', 'Successfully deleted the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully deleted the slide!');
+        return Redirect::to('admin/slide');
     }
 }

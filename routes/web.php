@@ -45,4 +45,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	//connector nhà môi giới
 	Route::resource('connector', 'admin\ConnectorController');
 	Route::patch('/connector/{id}', 'admin\ConnectorController@update');
+	//Slider
+	Route::resource('slide', 'admin\SlideController');
+	Route::patch('/slide/{id}', 'admin\SlideController@update');
 });
