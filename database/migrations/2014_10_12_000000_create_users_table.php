@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('sex')->nullable();;
             $table->string('address', 200)->nullable();
             $table->string('phone', 20)->nullable();
-            $table->string('level');
+            $table->string('level')->default('1');
             $table->timestamps();
         });
     }

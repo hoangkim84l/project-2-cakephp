@@ -36,4 +36,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	//news
 	Route::resource('news', 'admin\NewsController');
 	Route::patch('/news/{id}', 'admin\NewsController@update');
+	//support
+	Route::resource('support', 'admin\SupportController');
+	Route::patch('/support/{id}', 'admin\SupportController@update');
+	//store address
+	Route::resource('storeAddress', 'admin\StoreAddressController');
+	Route::patch('/storeAddress/{id}', 'admin\StoreAddressController@update');
 });

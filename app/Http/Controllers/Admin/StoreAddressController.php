@@ -21,10 +21,9 @@ class StoreAddressController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
-        return View::make('admin.news.index')
-            ->with('news', $news);
+        $storeAddress = \App\StoreAddress::paginate(10);
+        return View::make('admin.storeAddress.index')
+            ->with('storeAddress', $storeAddress);
     }
 
     /**
@@ -35,7 +34,7 @@ class StoreAddressController extends Controller
     public function create()
     {
         //
-        return View::make('admin/news/create');
+        return View::make('admin/storeAddress/create');
     }
 
     /**
@@ -46,26 +45,16 @@ class StoreAddressController extends Controller
      */
     public function store(Request $request)
     {
-        //save image
-        if ($request->hasfile('filename')) {
-            $file = $request->file('filename');
-            $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
-        }
-        //save news
-        $news           = new \App\News;
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->views   = '1';
-        $date           = date_create($request->get('date'));
-        $format         = date_format($date, "Y-m-d");
-        $news->date     = strtotime($format);
-        $news->filename = $name;
-        $news->save();
+        //save storeAddress
+        $storeAddress           = new \App\storeAddress;
+        $storeAddress->phone    = $request->get('phone');
+        $storeAddress->email    = $request->get('email');
+        $storeAddress->address  = $request->get('address');
+        $storeAddress->save();
 
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
-        Session::flash('success', 'Successfully created news!');
-        return Redirect::to('admin/news');
+        //return redirect()->route('admin.storeAddress.index')->with('success', 'Information has been added');
+        Session::flash('success', 'Successfully created storeAddress!');
+        return Redirect::to('admin/storeAddress');
     }
 
     /**
@@ -76,12 +65,12 @@ class StoreAddressController extends Controller
      */
     public function show($id)
     {
-        // get the news
-        $news = \App\News::find($id);
+        // get the storeAddress
+        $storeAddress = \App\StoreAddress::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('admin.news.show')
-            ->with('news', $news);
+        return View::make('admin.storeAddress.show')
+            ->with('storeAddress', $storeAddress);
     }
 
     /**
@@ -92,11 +81,11 @@ class StoreAddressController extends Controller
      */
     public function edit($id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get storeAddress by id
+        $storeAddress = \App\StoreAddress::find($id);
         // show the edit form
-        return View::make('admin.news.edit')
-            ->with('news', $news);
+        return View::make('admin.storeAddress.edit')
+            ->with('storeAddress', $storeAddress);
     }
 
     /**
@@ -108,24 +97,16 @@ class StoreAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //get news by id
-        $news = \App\News::find($id);
-        //get link image
-        if ($request->hasfile('filename')) {
-            $file = $request->file('filename');
-            $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
-        } else {
-            $name = $news->filename;
-        }
+        //get storeAddress by id
+        $storeAddress = \App\StoreAddress::find($id);
+        //get and store data
+        $storeAddress->phone    = $request->get('phone');
+        $storeAddress->email    = $request->get('email');
+        $storeAddress->address  = $request->get('address');
+        $storeAddress->save();
 
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->filename = $name;
-        $news->save();
-
-        Session::flash('success', 'Successfully update the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully update the storeAddress!');
+        return Redirect::to('admin/storeAddress');
     }
 
     /**
@@ -136,15 +117,11 @@ class StoreAddressController extends Controller
      */
     public function destroy($id)
     {
-        //delete news by id
-        $news = \App\News::find($id);
-        $news->delete();
-        //delete image in news
-        $image_link = storage_path() . '/app/public/news/' . $news->filename;
-        if (file_exists($image_link)) {
-            unlink($image_link);
-        }
-        Session::flash('success', 'Successfully deleted the news!');
-        return Redirect::to('admin/news');
+        //delete storeAddress by id
+        $storeAddress = \App\StoreAddress::find($id);
+        $storeAddress->delete();
+
+        Session::flash('success', 'Successfully deleted the storeAddress!');
+        return Redirect::to('admin/storeAddress');
     }
 }

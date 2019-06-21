@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SroreAddress extends Model
+class StoreAddress extends Model
 {
     protected $table = 'store_address';
     protected $fillable = ['phone', 'address', 'email'];

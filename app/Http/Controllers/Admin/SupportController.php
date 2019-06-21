@@ -10,6 +10,7 @@ use View;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Pagination\Paginator;
+use Carbon\Carbon;
 
 class SupportController extends Controller
 {
@@ -21,21 +22,9 @@ class SupportController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
-        return View::make('admin.news.index')
-            ->with('news', $news);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return View::make('admin/news/create');
+        $support = \App\Support::paginate(10);
+        return View::make('admin.support.index')
+            ->with('support', $support);
     }
 
     /**
@@ -50,38 +39,22 @@ class SupportController extends Controller
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/support/', $name);
         }
-        //save news
-        $news           = new \App\News;
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->views   = '1';
+        //save support
+        $support           = new \App\Support;
+        $support->name     = $request->get('name');
+        $support->content  = $request->get('content');
+        $support->views   = '1';
         $date           = date_create($request->get('date'));
         $format         = date_format($date, "Y-m-d");
-        $news->date     = strtotime($format);
-        $news->filename = $name;
-        $news->save();
+        $support->date     = strtotime($format);
+        $support->filename = $name;
+        $support->save();
 
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
-        Session::flash('success', 'Successfully created news!');
-        return Redirect::to('admin/news');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // get the news
-        $news = \App\News::find($id);
-
-        // show the view and pass the nerd to it
-        return View::make('admin.news.show')
-            ->with('news', $news);
+        //return redirect()->route('admin.support.index')->with('success', 'Information has been added');
+        Session::flash('success', 'Successfully created support!');
+        return Redirect::to('admin/support');
     }
 
     /**
@@ -92,11 +65,11 @@ class SupportController extends Controller
      */
     public function edit($id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get support by id
+        $support = \App\Support::find($id);
         // show the edit form
-        return View::make('admin.news.edit')
-            ->with('news', $news);
+        return View::make('admin.support.edit')
+            ->with('support', $support);
     }
 
     /**
@@ -108,43 +81,34 @@ class SupportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get support by id
+        $support = \App\Support::find($id);
         //get link image
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/support/', $name);
         } else {
-            $name = $news->filename;
+            $name = $support->logo;
         }
 
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->filename = $name;
-        $news->save();
+        $support->name      = $request->get('name');
+        $support->gmail     = $request->get('gmail');
+        $support->skype     = $request->get('skype');
+        $support->hotline   = $request->get('hotline');
+        $support->site_title = $request->get('site_title');
+        $support->meta_key  = $request->get('meta_key');
+        $support->meta_desc = $request->get('meta_desc');
+        $support->zalo      = $request->get('zalo');
+        $support->facebook  = $request->get('facebook');
+        $support->logo      = $name;
+        $support->address   = $request->get('address');
+        $support->chat_zalo = $request->get('chat_zalo');
+        $support->chat_facebook = $request->get('chat_facebook');
+        $support->updated_at = Carbon::now()->timestamp;
+        $support->save();
 
-        Session::flash('success', 'Successfully update the news!');
-        return Redirect::to('admin/news');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //delete news by id
-        $news = \App\News::find($id);
-        $news->delete();
-        //delete image in news
-        $image_link = storage_path() . '/app/public/news/' . $news->filename;
-        if (file_exists($image_link)) {
-            unlink($image_link);
-        }
-        Session::flash('success', 'Successfully deleted the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully update the support!');
+        return Redirect::to('admin/support');
     }
 }
