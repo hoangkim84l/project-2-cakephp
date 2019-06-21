@@ -20,11 +20,10 @@ class ConnectorController extends Controller
      */
     public function index()
     {
-        //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
-        return View::make('admin.news.index')
-            ->with('news', $news);
+        //display list connector with 10 record/page
+        $connector = \App\Connector::paginate(10);
+        return View::make('admin.connector.index')
+            ->with('connector', $connector);
     }
 
     /**
@@ -35,7 +34,7 @@ class ConnectorController extends Controller
     public function create()
     {
         //
-        return View::make('admin/news/create');
+        return View::make('admin/connector/create');
     }
 
     /**
@@ -50,22 +49,23 @@ class ConnectorController extends Controller
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/connector/', $name);
         }
-        //save news
-        $news           = new \App\News;
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->views   = '1';
-        $date           = date_create($request->get('date'));
-        $format         = date_format($date, "Y-m-d");
-        $news->date     = strtotime($format);
-        $news->filename = $name;
-        $news->save();
+        //save connector
+        $connector              = new \App\Connector;
+        $connector->name        = $request->get('name');
+        $connector->image_link  = $name;
+        $connector->intro_vn    = $request->get('intro_vn');
+        $connector->intro_en    = $request->get('intro_en');
+        $connector->intro_cn    = $request->get('intro_cn');
+        $connector->phone       = $request->get('phone');
+        $connector->email       = $request->get('email');
+        $connector->address     = $request->get('address');
+        $connector->position    = $request->get('position');
+        $connector->save();
 
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
-        Session::flash('success', 'Successfully created news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully created connector!');
+        return Redirect::to('admin/connector');
     }
 
     /**
@@ -76,12 +76,12 @@ class ConnectorController extends Controller
      */
     public function show($id)
     {
-        // get the news
-        $news = \App\News::find($id);
+        // get the connector
+        $connector = \App\Connector::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('admin.news.show')
-            ->with('news', $news);
+        return View::make('admin.connector.show')
+            ->with('connector', $connector);
     }
 
     /**
@@ -92,11 +92,11 @@ class ConnectorController extends Controller
      */
     public function edit($id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get connector by id
+        $connector = \App\Connector::find($id);
         // show the edit form
-        return View::make('admin.news.edit')
-            ->with('news', $news);
+        return View::make('admin.connector.edit')
+            ->with('connector', $connector);
     }
 
     /**
@@ -108,24 +108,31 @@ class ConnectorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get connector by id
+        $connector = \App\Connector::find($id);
         //get link image
         if ($request->hasfile('filename')) {
             $file = $request->file('filename');
             $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $file->move(storage_path() . '/app/public/connector/', $name);
         } else {
-            $name = $news->filename;
+            $name = $connector->image_link;
         }
 
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->filename = $name;
-        $news->save();
+        $connector->name        = $request->get('name');
+        $connector->image_link  = $name;
+        $connector->intro_vn    = $request->get('intro_vn');
+        $connector->intro_en    = $request->get('intro_en');
+        $connector->intro_cn    = $request->get('intro_cn');
+        $connector->phone       = $request->get('phone');
+        $connector->email       = $request->get('email');
+        $connector->address     = $request->get('address');
+        $connector->position    = $request->get('position');
 
-        Session::flash('success', 'Successfully update the news!');
-        return Redirect::to('admin/news');
+        $connector->save();
+
+        Session::flash('success', 'Successfully update the connector!');
+        return Redirect::to('admin/connector');
     }
 
     /**
@@ -136,15 +143,15 @@ class ConnectorController extends Controller
      */
     public function destroy($id)
     {
-        //delete news by id
-        $news = \App\News::find($id);
-        $news->delete();
-        //delete image in news
-        $image_link = storage_path() . '/app/public/news/' . $news->filename;
+        //delete connector by id
+        $connector = \App\connector::find($id);
+        $connector->delete();
+        //delete image in connector
+        $image_link = storage_path() . '/app/public/connector/' . $connector->filename;
         if (file_exists($image_link)) {
             unlink($image_link);
         }
-        Session::flash('success', 'Successfully deleted the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully deleted the connector!');
+        return Redirect::to('admin/connector');
     }
 }

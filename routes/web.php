@@ -42,4 +42,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	//store address
 	Route::resource('storeAddress', 'admin\StoreAddressController');
 	Route::patch('/storeAddress/{id}', 'admin\StoreAddressController@update');
+	//connector nhà môi giới
+	Route::resource('connector', 'admin\ConnectorController');
+	Route::patch('/connector/{id}', 'admin\ConnectorController@update');
 });
