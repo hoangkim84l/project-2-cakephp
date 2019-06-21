@@ -48,4 +48,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 	//Slider
 	Route::resource('slide', 'admin\SlideController');
 	Route::patch('/slide/{id}', 'admin\SlideController@update');
+	//introduce
+	Route::resource('info', 'admin\InfoController');
+	Route::patch('/info/{id}', 'admin\InfoController@update');
 });

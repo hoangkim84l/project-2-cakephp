@@ -16,14 +16,14 @@ class CreateInfoTable extends Migration
         Schema::create('infoes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title_vn', 250);
-            $table->string('title_en', 250);
-            $table->string('title_cn', 250);
-            $table->text('image_list');
+            $table->string('title_en', 250)->nullable();
+            $table->string('title_cn', 250)->nullable();
+            $table->text('image_list')->nullable();
             $table->text('content_vn');
-            $table->text('content_en');
-            $table->text('content_cn');
-            $table->text('meta_key');
-            $table->text('meta_desc');
+            $table->text('content_en')->nullable();
+            $table->text('content_cn')->nullable();
+            $table->text('meta_key')->nullable();
+            $table->text('meta_desc')->nullable();
             $table->timestamps();
         });
     }

@@ -21,67 +21,9 @@ class InfoController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
-        return View::make('admin.news.index')
-            ->with('news', $news);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return View::make('admin/news/create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //save image
-        if ($request->hasfile('filename')) {
-            $file = $request->file('filename');
-            $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
-        }
-        //save news
-        $news           = new \App\News;
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->views   = '1';
-        $date           = date_create($request->get('date'));
-        $format         = date_format($date, "Y-m-d");
-        $news->date     = strtotime($format);
-        $news->filename = $name;
-        $news->save();
-
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
-        Session::flash('success', 'Successfully created news!');
-        return Redirect::to('admin/news');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // get the news
-        $news = \App\News::find($id);
-
-        // show the view and pass the nerd to it
-        return View::make('admin.news.show')
-            ->with('news', $news);
+        $info = \App\Info::paginate(10);
+        return View::make('admin.info.index')
+            ->with('info', $info);
     }
 
     /**
@@ -92,11 +34,11 @@ class InfoController extends Controller
      */
     public function edit($id)
     {
-        //get news by id
-        $news = \App\News::find($id);
+        //get info by id
+        $info = \App\Info::find($id);
         // show the edit form
-        return View::make('admin.news.edit')
-            ->with('news', $news);
+        return View::make('admin.info.edit')
+            ->with('info', $info);
     }
 
     /**
@@ -108,43 +50,33 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //get news by id
-        $news = \App\News::find($id);
-        //get link image
+        //get info by id
+        $info = \App\Info::find($id);
+        //get list image
+
         if ($request->hasfile('filename')) {
-            $file = $request->file('filename');
-            $name = time() . $file->getClientOriginalName();
-            $file->move(storage_path() . '/app/public/news/', $name);
+            $image_list = array();
+            $file       = $request->file('filename');
+            $image_list = time() . $file->getClientOriginalName();
+            $file->move(storage_path() . '/app/public/info/', $image_list);
+            $image_list = json_encode($image_list);
         } else {
-            $name = $news->filename;
+            $image_list = $info->image_list;
         }
 
-        $news->name     = $request->get('name');
-        $news->content  = $request->get('content');
-        $news->filename = $name;
-        $news->save();
+        $info->title_vn     = $request->get('title_vn');
+        $info->title_en     = $request->get('title_en');
+        $info->title_cn     = $request->get('title_cn');
+        $info->image_list   = $image_list;
+        $info->content_vn   = $request->get('content_vn');
+        $info->content_en   = $request->get('content_en');
+        $info->content_cn   = $request->get('content_cn');
+        $info->meta_key     = $request->get('meta_key');
+        $info->meta_desc    = $request->get('meta_desc');
 
-        Session::flash('success', 'Successfully update the news!');
-        return Redirect::to('admin/news');
-    }
+        $info->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //delete news by id
-        $news = \App\News::find($id);
-        $news->delete();
-        //delete image in news
-        $image_link = storage_path() . '/app/public/news/' . $news->filename;
-        if (file_exists($image_link)) {
-            unlink($image_link);
-        }
-        Session::flash('success', 'Successfully deleted the news!');
-        return Redirect::to('admin/news');
+        Session::flash('success', 'Successfully update the info!');
+        return Redirect::to('admin/info');
     }
 }
