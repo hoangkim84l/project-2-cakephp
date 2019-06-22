@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin </b>LTE',
+    'logo' => '<b>Admin </b>BDS',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>B</b>DS',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,46 +108,70 @@ return [
     */
 
     'menu' => [
-        'ACCOUNT SETTINGS',
+        'Thông tin tài khoản',
         [
-            'text' => 'Profile',
+            'text' => 'Thông tin',
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
+            'text' => 'Đổi mật khẩu',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
         
-        'Feature',
+        'Tính năng',
         [
-            'text'  => 'Product',
-            'icon'  => 'atom',
+            'text'  => 'Banner',
             'url'  => '#',
+            'icon' => 'image',
         ],
         [
-            'text'  => 'News',
-            'icon'  => 'file',
+            'text'  => 'Slider',
+            'url'  => '#',
+            'icon' => 'sliders',
+        ],
+        [
+            'text'  => 'Giới thiệu',
+            'url'  => '#',
+            'icon' => 'commenting',
+        ],
+        [
+            'text'  => 'Đăng tin',
             'url'  => 'admin/news',
+            'icon' => 'rss',
         ],
         [
-            'text'  => 'Service',
-            'icon'  => 'service',
+            'text'  => 'Rao vặt',
             'url'  => '#',
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
+            'icon' => 'legal',
         ],
         [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
+            'text'  => 'Tuyển dụng',
+            'url'  => '#',
+            'icon' => 'comments',
         ],
         [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
+            'text'  => 'Nhà môi giới',
+            'url'  => '#',
+            'icon' => 'money',
+        ],
+        [
+            'text'  => 'Hỏi đáp',
+            'url'  => '#',
+            'icon' => 'question',
+        ],
+        
+        'Thông tin trang web',
+        [
+            'text'  => 'Địa chỉ chi nhánh',
+            'url'  => '#',
+            'icon' => 'group',
+        ],
+        [
+            'text'  => 'Cấu hình',
+            'url'  => '#',
+            'icon' => 'gears',
         ],
     ],
 

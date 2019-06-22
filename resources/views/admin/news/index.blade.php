@@ -5,8 +5,11 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Table News</h3><br/><br/>
-        <a href="{{ URL::to('admin/news/create') }}" class="btn btn-success">add news</a>
+        <h3 class="box-title">Danh sách bản tin</h3>
+        <div class="box-header-button">
+          <a href="{{ URL::to('admin/news/create') }}" class="btn btn-success">Thêm mới</a>
+          <a href="{{ URL::to('admin/news/') }}" class="btn btn-default">Danh sách</a>
+        </div>
     </div>
     <!-- /.box-header -->
     <div class="cus-data-table">
@@ -20,11 +23,11 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Content</th>
-        <th>Views</th>
-        <th style="text-align: center;">Action</th>
+        <th>Tiêu đề</th>
+        <th>Nội dung</th>
+        <th>Lượt Xem</th>
+        <th>Ngày tạo</th>
+        <th style="text-align: center;">Hành động</th>
       </tr>
     </thead>
     <tbody>
@@ -36,20 +39,19 @@
       <tr>
         <td>{{$passport['id']}}</td>
         <td>{{$passport['name']}}</td>
-        <td>{{$date}}</td>
         <td>{{ substr($passport['content'],0,50)}}</td>
         <td>{{$passport['views']}}</td>
-        
+        <td>{{$date}}</td>
         <td>
           <div class="row">
             <div class="col-sm-6">
-              <a href="{{ URL::to('admin/news/' . $passport->id . '/edit') }}" class="btn btn-warning" style="float: right;">Edit</a>
+              <a href="{{ URL::to('admin/news/' . $passport->id . '/edit') }}" class="btn btn-warning" style="float: right;">Sửa</a>
             </div>
             <div class="col-sm-6">
               <form action="{{ URL::to('admin/news/' . $passport->id) }}" method="post">
                 @csrf
                 <input name="_method" type="hidden" value="DELETE">
-                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
+                <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Xóa</button>
               </form>
             </div>
           </div>
