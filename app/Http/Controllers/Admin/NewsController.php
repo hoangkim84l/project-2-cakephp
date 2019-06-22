@@ -10,6 +10,7 @@ use View;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Pagination\Paginator;
+use Mail;
 
 class NewsController extends Controller
 {
@@ -21,8 +22,7 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $news = \App\News::paginate(7);
-        //return view('admin/news/', compact('news'));
+        $news = \App\News::paginate(3);
         return View::make('admin.news.index')
             ->with('news', $news);
     }
@@ -46,6 +46,11 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+                'name' => 'required',
+                'content' => 'required',
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
         //save image
         if($request->hasfile('filename'))
         {
@@ -54,18 +59,26 @@ class NewsController extends Controller
             $file->move(storage_path().'/app/public/news/', $name); 
 
         }
+        else{
+            $name = 'default.png';
+        }
         //save news
         $news           = new \App\News;
         $news->name     =$request->get('name');
         $news->content  =$request->get('content');
-        $news->views   ='1';
+        $news->views    ='1';
         $date           =date_create($request->get('date'));
         $format         = date_format($date,"Y-m-d");
         $news->date     = strtotime($format);
         $news->filename =$name;
         $news->save();
-        
-        //return redirect()->route('admin.news.index')->with('success', 'Information has been added');
+
+        Mail::send('templatemail', array('name'=>$request->get('name'),
+                                         'content'=>$request->get('content')), 
+                                   function($message){$message->to('vpduy84@gmail.com', 'Visitor')
+                                ->subject('Visitor Feedback!');
+        });
+
         Session::flash('success', 'Successfully created news!');
         return Redirect::to('admin/news');
     }

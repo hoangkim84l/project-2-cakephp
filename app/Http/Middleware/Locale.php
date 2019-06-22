@@ -3,9 +3,11 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Session;
-use Config;
-use App;
+use Lang;
+
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class Locale
 {
@@ -18,13 +20,14 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        $language = \Session::get('website_language', config('app.locale'));
-        // Lấy dữ liệu lưu trong Session, không có thì trả về default lấy trong config
+     if (!Session::has('locale')) {
+          Session::put('locale', config('app.locale'));
+        }
 
-        config(['app.locale' => $language]);
-        // Chuyển ứng dụng sang ngôn ngữ được chọn
+        Lang::setLocale(Session::get('locale'));
 
         return $next($request);
+
 
     }
 }

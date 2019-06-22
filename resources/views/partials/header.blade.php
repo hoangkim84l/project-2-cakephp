@@ -19,7 +19,7 @@
               <ul class="nav__menu">
 
                 <li class="nav__dropdown active">
-                  <a href="index-2.html">Home</a>
+                  <a href="index-2.html">{{ trans('rules.home') }}</a>
                   <ul class="nav__dropdown-menu">
                     <li><a href="index-2.html">Home Default</a></li>
                     <li><a href="index-politics.html">Home Politics</a></li>
@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav__dropdown">
-                  <a href="#">Posts</a>
+                  <a href="#">{{ trans('rules.post') }}</a>
                   <ul class="nav__dropdown-menu nav__megamenu">
                     <li>
                       <div class="nav__megamenu-wrap">
@@ -113,28 +113,9 @@
 
                 <li>
                   <a href="#">{{ trans('rules.news') }}</a>
-                </li>                
-
-                <li class="nav__dropdown">
-                  <a href="#">Features</a>
-                  <ul class="nav__dropdown-menu">
-                    <li><a href="shortcodes.html">Shortcodes</a></li>
-                    <li class="nav__dropdown">
-                      <a href="#">Single Post</a>
-                      <ul class="nav__dropdown-menu">
-                        <li><a href="single-post.html">Style 1</a></li>
-                        <li><a href="single-post-politics.html">Style 2</a></li>
-                        <li><a href="single-post-fashion.html">Style 3</a></li>
-                        <li><a href="single-post-games.html">Style 4</a></li>
-                        <li><a href="single-post-videos.html">Style 5</a></li>
-                        <li><a href="single-post-music.html">Style 6</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
+                </li>   
                 <li>
-                  <a href="#">Purchase</a>
+                  <a href="#">{{ trans('rules.support') }}</a>
                 </li>
 
 

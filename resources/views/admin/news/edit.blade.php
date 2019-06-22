@@ -14,28 +14,28 @@
         @csrf
       <div class="row">
         <div class="col-md-12"></div>
-        <div class="form-group col-md-10">
+        <div class="form-group col-md-10 col-sm-10">
           <label for="Name">Title:</label>
           <input type="text" class="form-control" name="name" value="{{$news->name}}">
         </div>
       </div>
       <div class="row">
         <div class="col-md-12"></div>
-          <div class="form-group col-md-10">
+          <div class="form-group col-md-10 col-sm-10">
             <label for="content">Content:</label>
             <textarea name="content" class="form-control">{{$news->content}}</textarea>
           </div>
         </div>
       <div class="row">
         <div class="col-md-12"></div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-12 col-sm-10">
           <img src="<?php echo asset("storage/news/$news->filename")?>" style="max-width: 400px; max-height: 400px; padding-bottom: 20px;">
           <input type="file" name="filename">    
        </div>
       </div>
       <div class="row">
         <div class="col-md-12"></div>
-        <div class="form-group col-md-10">
+        <div class="form-group col-md-10 col-sm-10">
           <strong>Date : </strong>  
           <input class="timepicker form-control"  type="date" id="timepicker" name="date" value="{{$date}}">   
        </div>

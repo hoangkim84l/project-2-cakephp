@@ -6,8 +6,15 @@
       <ul class="top-menu">
         <li><a href="#">About</a></li>
         <li><a href="#">Advertise</a></li>
-        <li><a href="{!! route('user.change-language', ['en']) !!}">English</a></li>
-        <li><a href="{!! route('user.change-language', ['vi']) !!}">Vietnam</a></li>
+        <li>
+          <form action="{{ route('switchLang') }}" class="form-lang" method="post">
+            <select name="locale" onchange='this.form.submit();'>
+              <option value="en">English &nbsp;&nbsp;</option>
+              <option value="vi"{{ Lang::locale() === 'vi' ? 'selected' : '' }}>Việt Nam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            </select>
+            {{ csrf_field() }}
+          </form>
+        </li>
       </ul>
     </div>
     
