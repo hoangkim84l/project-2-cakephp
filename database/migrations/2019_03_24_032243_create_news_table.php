@@ -15,11 +15,26 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('date');
-            $table->text('content');
+            $table->string('title_vn', 250);
+            $table->string('title_en', 250);
+            $table->string('title_cn', 250);
+            $table->text('slug')->nullable();
+            $table->text('meta_key')->nullable();
+            $table->text('meta_desc')->nullable();
+            $table->string('image_link', 250);
+            $table->text('content_vn')->nullable();
+            $table->text('content_en')->nullable();
+            $table->text('content_cn')->nullable();
             $table->integer('views');
-            $table->string('filename');
+            $table->text('bedrooms')->nullable();
+            $table->text('bathrooms')->nullable();
+            $table->text('garages')->nullable();
+            $table->text('owns')->nullable();
+            $table->string('status', 10)->nullable();
+            $table->string('enddate', 30)->nullable();
+            $table->text('viewtype')->nullable();
+            $table->text('amenities')->nullable();
+            $table->string('typeId');
             $table->timestamps();
         });
     }
