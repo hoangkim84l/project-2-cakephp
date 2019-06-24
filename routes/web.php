@@ -10,30 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'localization', 'prefix' => Session::get('locale')], function () {
-    $this->get('/trang-chu', 'HomeController@index')->name('home');
-    Route::post('/lang', [
-        'as' => 'switchLang',
-        'uses' => 'LangController@postLang',
-    ]);
-    Route::get('/', function () { return view('sites.home'); });
-	Route::get('/news', function()
-	{
-	   return View::make('sites.news');
-
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => 'locale'], function () {
-	Route::get('change-language/{language}', 'HomeController@changeLanguage')
-		->name('user.change-language');
+Route::group(['middleware' => 'locale', 'prefix' => Session::get('locale')], function () {
+	$this->get('/trang-chu', 'HomeController@index')->name('home');
+	Route::post('/lang', [
+		'as' => 'switchLang',
+		'uses' => 'LangController@postLang',
+	]);
 	Route::get('/', function () {
 		return view('sites.home');
 	});
 	Route::get('/news', function () {
 		return View::make('sites.news');
 	});
+	//Route::get('/home', 'HomeController@index')->name('home');
+	Route::group(['middleware' => 'locale'], function () {
+		Route::get('change-language/{language}', 'HomeController@changeLanguage')
+			->name('user.change-language');
+		Route::get('/', function () {
+			return view('sites.home');
+		});
+		Route::get('/news', function () {
+			return View::make('sites.news');
+		});
+	});
+	Auth::routes();
 });
-Auth::routes();
-
 /*
  * --------------------------------------------------------------------------
  *                          ROUTE For ADMIN
@@ -41,7 +42,9 @@ Auth::routes();
  */
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
-	Route::get('/', function () { return view('admin/dashboard'); });
+	Route::get('/', function () {
+		return view('admin/dashboard');
+	});
 	Route::get('/', function () {
 		return view('admin/dashboard');
 	});
