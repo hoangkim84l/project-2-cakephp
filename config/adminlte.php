@@ -131,6 +131,21 @@ return [
             'icon' => 'check',
         ],
         [
+            'text' => 'Giới thiệu',
+            'icon' => 'commenting',
+            'url'  => '#',
+            'submenu' => [
+                [
+                    'text' => 'Nội dung',
+                    'url'  => 'admin/info',
+                ],
+                [
+                    'text' => 'Quản lý hình ảnh',
+                    'url'  => 'admin/info',
+                ],
+            ],
+        ],
+        [
             'text'  => 'Banner',
             'url'  => 'admin/banner',
             'icon' => 'image',
@@ -141,19 +156,19 @@ return [
             'icon' => 'sliders',
         ],
         [
-            'text'  => 'Giới thiệu',
-            'url'  => 'admin/info',
-            'icon' => 'commenting',
-        ],
-        [
             'text'  => 'Đăng tin',
-            'url'  => 'admin/news',
+            'url'  => '#',
             'icon' => 'rss',
-        ],
-        [
-            'text'  => 'Rao vặt',
-            'url'  => 'admin/ads',
-            'icon' => 'legal',
+            'submenu' => [
+                [
+                    'text' => 'Nội dung',
+                    'url'  => 'admin/news',
+                ],
+                [
+                    'text' => 'Quản lý loại tin',
+                    'url'  => 'admin/info',
+                ],
+            ],
         ],
         [
             'text'  => 'Tuyển dụng',
@@ -170,7 +185,21 @@ return [
             'url'  => 'admin/question',
             'icon' => 'question',
         ],
-
+        [
+            'text'  => 'Rao vặt',
+            'url'  => '#',
+            'icon' => 'legal',
+            'submenu' => [
+                [
+                    'text' => 'Nội dung',
+                    'url'  => 'admin/ads',
+                ],
+                [
+                    'text' => 'Quản lý loại tin',
+                    'url'  => 'admin/info',
+                ],
+            ],
+        ],
         'Thông tin trang web',
         [
             'text'  => 'Địa chỉ chi nhánh',
